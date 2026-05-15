@@ -45,7 +45,7 @@ sh 'docker push $IMAGE_NAME'
 stage('Deploy Using Ansible') {
 steps {
 sh '''
-ansible-playbook \
+/usr/bin/ansible-playbook \
 -i /home/ubuntu/ansible/inventory \
 /home/ubuntu/ansible/deploy.yml
 '''
