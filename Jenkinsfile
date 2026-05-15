@@ -10,7 +10,7 @@ stages {
 stage('Clone Code') {
 steps {
 git branch: 'main',
-url: 'https://github.com/yamithau28/devops-poc7.git'
+url: 'https://github.com/04052024/devops-poc7.git'
 }
 }
 
