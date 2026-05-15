@@ -41,7 +41,10 @@ steps {
 sh 'docker push $IMAGE_NAME'
 }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> ca0638b (fixed ansible deployment)
 stage('Deploy Using Ansible') {
 steps {
 sh '''
