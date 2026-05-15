@@ -46,8 +46,8 @@ stage('Deploy Using Ansible') {
 steps {
 sh '''
 /usr/bin/ansible-playbook \
--i /home/ubuntu/ansible/inventory \
-/home/ubuntu/ansible/deploy.yml
+-i /home/ansible/inventory \
+/home/ansible/deploy.yml
 '''
 }
 }
