@@ -9,7 +9,8 @@ stages {
 
 stage('Clone Code') {
 steps {
-git 'https://github.com/yamithau28/devops-poc7'
+git branch: 'main',
+url: 'https://github.com/yamithau28/devops-poc7.git'
 }
 }
 
@@ -26,7 +27,11 @@ credentialsId: 'dockerhub',
 usernameVariable: 'DOCKER_USER',
 passwordVariable: 'DOCKER_PASS'
 )]) {
-sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+
+sh '''
+echo $DOCKER_PASS | docker login \
+-u $DOCKER_USER --password-stdin
+'''
 }
 }
 }
@@ -34,6 +39,16 @@ sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
 stage('Push Docker Image') {
 steps {
 sh 'docker push $IMAGE_NAME'
+}
+}
+
+stage('Deploy Using Ansible') {
+steps {
+sh '''
+ansible-playbook \
+-i /home/ubuntu/ansible/inventory \
+/home/ubuntu/ansible/deploy.yml
+'''
 }
 }
 }
